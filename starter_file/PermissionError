@@ -1,0 +1,107 @@
+Accuracy:  {'accuracy': 0.8761261261261261}
+---------------------------------------------------------------------------
+PermissionError                           Traceback (most recent call last)
+Cell In[10], line 4
+      1 # Printing details of the best run
+      2 print('Accuracy: ', remote_run.get_metrics('accuracy'))
+----> 4 best_automl_run, best_automl_model = remote_run.get_output()
+      5 print('\n Best run: ', best_automl_run)
+      6 print('\n Model: ', best_automl_model)
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/train/automl/run.py:718, in AutoMLRun.get_output(self, iteration, metric, return_onnx_model, return_split_onnx_model, **kwargs)
+    716         fitted_model = _download_automl_onnx_model(curr_run, model_name)
+    717     else:
+--> 718         fitted_model = _download_automl_model(curr_run, model_name)
+    720 return curr_run, fitted_model
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/train/automl/_model_download_utilities.py:80, in _download_automl_model(run, model_name)
+     75     raise ClientException(str(e)).with_generic_msg('Downloading AutoML model failed.') from None
+     77 try:
+     78     # Pass through any exceptions from loading the model.
+     79     # Try is used here to ensure we can cleanup the side effect of model downlad.
+---> 80     model = _load_automl_model(model_path, suffix)
+     81     if model is None:
+     82         # If we can retrieve the automl runtime version, we do so we can inform the user what to install.
+     83         # Otherwise just tell them to install latest runtime version (this is not an expected scenario).
+     84         automl_runtime_ver = azureml_run_deps.get("azureml-train-automl-runtime", None)
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/train/automl/_model_download_utilities.py:172, in _load_automl_model(model_path, suffix)
+    170 if not is_torch_model:
+    171     with open(model_path, "rb") as model_file:
+--> 172         fitted_model = pickle.load(model_file)  # type: Optional[Any]
+    173         return fitted_model
+    174 else:
+    175     # Load the torch model with pytorch.
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/automl/runtime/featurization/__init__.py:8
+      4 """Init for featurization module."""
+      7 # Data transformer
+----> 8 from .data_transformer import DataTransformer, TransformerAndMapper
+     11 from azureml.automl.runtime.featurization.streaming.streaming_featurizer import StreamingFeaturizer
+     14 from .featurizers import Featurizers
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/automl/runtime/featurization/data_transformer.py:56
+     54 from azureml.automl.runtime.featurization import data_transformer_utils
+     55 from azureml.automl.runtime.featurization_info_provider import FeaturizationInfoProvider
+---> 56 from azureml.automl.runtime.featurizer.transformer.categorical import LabelEncoderTransformer
+     57 from azureml.automl.runtime.shared import memory_utilities, utilities as runtime_utilities
+     58 from azureml.automl.runtime.shared.types import (
+     59     DataInputType,
+     60     DataSingleColumnInputType,
+     61     FeaturizationSummaryType,
+     62 )
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/automl/runtime/featurizer/transformer/__init__.py:7
+      4 """Contains automated machine learning classes for transforming data in Azure Machine Learning."""
+      6 # Categorical
+----> 7 from .categorical import CategoricalFeaturizers, CatImputer, LabelEncoderTransformer, \
+      8     HashOneHotVectorizerTransformer, OneHotEncoderTransformer
+     10 # Datetime
+     11 from .datetime import DateTimeFeaturesTransformer, DateTimeFeaturizers
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/automl/runtime/featurizer/transformer/categorical/__init__.py:7
+      5 from .cat_imputer import CatImputer
+      6 from .hashonehotvectorizer_transformer import HashOneHotVectorizerTransformer
+----> 7 from .labelencoder_transformer import LabelEncoderTransformer
+      8 from .categorical_featurizers import CategoricalFeaturizers
+      9 from .onehotencoder_transformer import OneHotEncoderTransformer
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/automl/runtime/featurizer/transformer/categorical/labelencoder_transformer.py:5
+      1 # ---------------------------------------------------------
+      2 # Copyright (c) Microsoft Corporation. All rights reserved.
+      3 # ---------------------------------------------------------
+      4 """Transforms column using a label encoder to encode categories into numbers."""
+----> 5 from azureml.training.tabular.featurization.categorical.labelencoder_transformer import LabelEncoderTransformer
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/training/tabular/featurization/categorical/labelencoder_transformer.py:12
+     10 from azureml.automl.core.shared.logging_utilities import function_debug_log_wrapped
+     11 from azureml.automl.core.constants import SupportedTransformersInternal as _SupportedTransformersInternal
+---> 12 from ...models._abstract_model_wrapper import _AbstractModelWrapper
+     13 from .._azureml_transformer import AzureMLTransformer
+     16 class LabelEncoderTransformer(AzureMLTransformer, _AbstractModelWrapper):
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/training/tabular/models/__init__.py:6
+      4 from ._abstract_model_wrapper import _AbstractModelWrapper
+      5 from .calibrated_model import CalibratedModel
+----> 6 from .forecasting_pipeline_wrapper import RegressionPipeline, ForecastingPipelineWrapper
+      7 from .pipeline_with_ytransformations import PipelineWithYTransformations
+      8 from .sparse_scale_zero_one import SparseScaleZeroOne
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/training/tabular/models/forecasting_pipeline_wrapper.py:10
+      7 import uuid
+      8 from typing import Any, Dict, List, Optional, Tuple, Union, cast
+---> 10 import nimbusml
+     11 import numpy as np
+     12 import pandas as pd
+
+File /anaconda/envs/azureml_py38/lib/python3.8/site-packages/nimbusml/__init__.py:33
+     31     mode = oct(os.stat(dotso).st_mode & 0o777)
+     32     if mode != "0o755":
+---> 33         os.chmod(dotso, 0o755)
+     35 # clean up the package namespace
+     36 del os, sys
+
+PermissionError: [Errno 1] Operation not permitted: '/anaconda/envs/azureml_py38/lib/python3.8/site-packages/nimbusml/internal/libs/pybridge.so'
+
+et_best_run_by_primary_metric
+remote_run.get_best_run_by_primary_metric()
