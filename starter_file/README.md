@@ -75,7 +75,7 @@ The accuracy could be improved by using different settings, for example by incre
 ## Hyperparameter Tuning
 As I mentioned above, we are facing a classifaction problem to find out `DEATH_EVENT` of a person. The classification algorithm I used here is Logistic Regression of the `sklearn` package. Logistic regression is a well-known method in statistics that is used to predict the probability of an outcome, and is especially popular for classification tasks.  
 
-The model is included in the [training script] (/starter_file/train.py) and passed to estimator and HyperDrive configurations to predict the best model and accuracy. The HyperDrive run is executed successfully with the help of parameter sampler, policy, estimator. See the `HyperDriveConfig` below: 
+The model is included in the [training script](/starter_file/train.py) and passed to estimator and HyperDrive configurations to predict the best model and accuracy. The HyperDrive run is executed successfully with the help of parameter sampler, policy, estimator. See the `HyperDriveConfig` below: 
 
 ```
 estimator = ScriptRunConfig(
