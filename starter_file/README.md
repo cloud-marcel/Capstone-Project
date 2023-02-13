@@ -96,7 +96,7 @@ hyperdrive_run_config = HyperDriveConfig(
 )
 ```
 
-Initially in the training script (train.py),the dataset (Heart_Failure_Clinical_Records_Dataset.csv) is retrieved by [URL](https://raw.githubusercontent.com/Harini-Pavithra/Machine-Learning-Engineer-with-Microsoft-Azure-Nanodegree/main/Capstone Project/Dataset/Heart_Failure_Clinical_Records_Dataset.csv) provided using `TabularDatasetFactory` class.Then the data is being split as train and test with the ratio of 70:30.
+Initially in the training script (train.py),the dataset (Heart_Failure_Clinical_Records_Dataset.csv) is retrieved by [URL](https://raw.githubusercontent.com/Harini-Pavithra/Machine-Learning-Engineer-with-Microsoft-Azure-Nanodegree/main/Capstone%20Project/Dataset/Heart_Failure_Clinical_Records_Dataset.csv) provided using `TabularDatasetFactory` class.Then the data is being split as train and test with the ratio of 70:30.
 
 Via the Hyperparameters of the model I had the control over the training. These Hyperparameters are tuned via `HyperDrive` in order to find the configuration that results in the best performance (here in the highest accuracy). In the Notebook, a parameter sampler of the Class [RandomParameterSampling](https://learn.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.randomparametersampling?view=azure-ml-py) was chosen which supports discrete and continuous hyperparameters. It was specified as follows:
 
