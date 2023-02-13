@@ -24,7 +24,8 @@ Training the two models, I am going to predict if a person with CVD having speci
 ### Access
 The dataset was downloaded from the Kaggle website and saved locally. It was then added to the workspace to work with:
 
-####### ToDo: Bild von Dataset
+![data_overview](/starter_file/images/Dataset/data_overview.png)
+![data_explore](/starter_file/images/Dataset/data_explore.png)
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
@@ -56,13 +57,17 @@ automl_config = AutoMLConfig(
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
 Several models using different algorithms were found automatically by AutoML, e. g. LightGBM, RandomForest, ...
-######## ToDo: different models
+![different_models](/starter_file/images/AutoML/different_models.png)
 
 This could be visualized within the Jupyter Notebook via `RunDetails`:
-######## ToDo: Run Details
+![run_details](/starter_file/images/AutoML/rundetails.png)
 
-The best model with an accuracy of ##### was VotingEnsemble with the specific paramters:
-######## ToDo: Detailed View with parameters
+The best model with an accuracy of 87.61 % was VotingEnsemble:
+![best_model](/starter_file/images/AutoML/overview_completed.png)
+
+The details of this model could not be shown because of the Udacity lab environment. See the [classroom](https://knowledge.udacity.com/questions/957442?utm_campaign=ret_600_auto_ndxxx_knowledge-answer-created_na&utm_source=blueshift&utm_medium=email&utm_content=ret_600_auto_ndxxx_knowledge-answer-created_na&bsft_clkid=5c8ecb44-1e06-43a2-8961-4c11fee1c69e&bsft_uid=5c9b5725-f4bc-4a88-94a8-2b0fe40ba6e5&bsft_mid=50d4361e-11bc-42f4-881f-6bceb380cb7c&bsft_eid=22b8f7b6-5eac-66ee-cf9f-0d5b86b9fddc&bsft_txnid=aed4cb71-9e4a-4007-b94d-72d9522e365c&bsft_mime_type=html&bsft_ek=2023-02-11T14%3A19%3A04Z&bsft_aaid=8d7e276e-4a10-41b2-8868-423fe96dd6b2&bsft_lx=1&bsft_tv=1#957454) thread here. This is why the model could not be registered in the Jupyter Notebook but manually in the Workplace:
+
+
 
 This model is going to be deployed in a later chapter.
 
