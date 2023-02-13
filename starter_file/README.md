@@ -16,7 +16,7 @@ Heart failure is a common event caused by CVDs and this dataset contains 12 feat
 The last column of the dataset is the label `DEATH_EVENT` to be predicted.
 
 ### Task
-Training the two models, I am going to predict if a person with CVD having specific features (like diabetes, sex, age) will survive the disease or not. This represents a classifcation problem.
+After training the two models, I am going to predict if a person with CVD having specific features (like diabetes, sex, age) will survive the disease or not. This represents a classifcation problem.
 
 ### Access
 The dataset was downloaded from the Kaggle website and saved locally. It was then added to the workspace to work with:
