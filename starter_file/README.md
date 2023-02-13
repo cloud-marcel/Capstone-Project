@@ -1,7 +1,4 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
 # Capstone Project: Heart Failure Prediction
-
 This final project will finish my Udacity Azure ML Nanodegree. I need to use the knowledge I have obtained from the course to solve an interesting problem. In this project, you am going to create two models: one using AutoML and one customized model whose hyperparameters are tuned using HyperDrive. I will then compare the performance of both the models and deploy the best performing model.
 
 To achieve this, I will import an external dataset into my workspace, train a model using the different tools available in the AzureML framework as well as deploy the model as a web service using Azure Container Instances(ACI). Once the model is deployed, the endpoint will be consumed.
@@ -29,8 +26,6 @@ The dataset was downloaded from the Kaggle website and saved locally. It was the
 ![data_explore](/starter_file/images/Dataset/data_explore.png)
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
-
 AutoML is a new feature of the Azure ML Workspace to automate the time consuming, iterative tasks of machine learning model development. In contrast to Hyperparameter tuning  with HyperDrive (see next chapter), you don't need a model which is specified by the ML engineer before the training. Rather AutoML finds a model by using different algorithms and parameters trying to improve the specified metrics.
 
 The orchestration is done in a separate Notebook. I do not need a training script here. The applied settings are shown below. They are passed to the AutoMLConfig object in JSON format. As already mentioned above, the column `DEATH_EVENT` is going to be predicted.
@@ -54,9 +49,6 @@ automl_config = AutoMLConfig(
 ```
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-
 Several models using different algorithms were found automatically by AutoML, e. g. LightGBM, RandomForest, ...
 
 ![different_models](/starter_file/images/AutoML/different_models.png)
@@ -81,8 +73,6 @@ The accuracy could be improved by using different settings, for example by incre
 
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
-
 As I mentioned above, we are facing a classifaction problem to find out `DEATH_EVENT` of a person. The classification algorithm I used here is Logistic Regression of the `sklearn` package. Logistic regression is a well-known method in statistics that is used to predict the probability of an outcome, and is especially popular for classification tasks.  
 
 The model is included in the [training script] (/starter_file/train.py) and passed to estimator and HyperDrive configurations to predict the best model and accuracy. The HyperDrive run is executed successfully with the help of parameter sampler, policy, estimator. See the `HyperDriveConfig` below: 
@@ -140,10 +130,6 @@ The policy automatically terminates poorly performing runs and improves computat
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
-
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-
 The best model parameters are
 - Max. iterations: 150
 - Regularization Strength: 0.8842528
@@ -163,8 +149,6 @@ The model can be further improved when tuning other parameters such as the crite
 
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
-
 AutoML provided a higher accuracy than HyperDrive so the `VotingEnsemble` model is going to be deployed. As already mentioned above, it was not possible to get the output of the best run in the Jupyter Notebook (see [classroom](https://knowledge.udacity.com/questions/957442?utm_campaign=ret_600_auto_ndxxx_knowledge-answer-created_na&utm_source=blueshift&utm_medium=email&utm_content=ret_600_auto_ndxxx_knowledge-answer-created_na&bsft_clkid=5c8ecb44-1e06-43a2-8961-4c11fee1c69e&bsft_uid=5c9b5725-f4bc-4a88-94a8-2b0fe40ba6e5&bsft_mid=50d4361e-11bc-42f4-881f-6bceb380cb7c&bsft_eid=22b8f7b6-5eac-66ee-cf9f-0d5b86b9fddc&bsft_txnid=aed4cb71-9e4a-4007-b94d-72d9522e365c&bsft_mime_type=html&bsft_ek=2023-02-11T14%3A19%3A04Z&bsft_aaid=8d7e276e-4a10-41b2-8868-423fe96dd6b2&bsft_lx=1&bsft_tv=1#957454) thread).
 
 This is why I deployed the model manually in the Azure ML Workspace. The following images shows the enpoint beeing active:
@@ -182,16 +166,10 @@ In the end, the service and the compute cluster were deleted (manually because o
 ![swagger](/starter_file/images/AutoML/delete_service.png)
 
 
-
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+Have a look at my YouTube video: https://youtu.be/zyiXlxDpbpE
 
 ## Future Improvement Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
-
 The accuracy of the best model (87.61 %) is not very good.
 The Deep Learning option can be tried when training the model which is not used by the AutoML in the runs.
 GPU instead of CPU could be used for faster training.
