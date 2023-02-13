@@ -8,7 +8,7 @@ To achieve this, I will import an external dataset into my workspace, train a mo
 
 
 ## Project Set Up and Installation
-For this project, the Lab provided by Udacity was used. The workspace configuration was the following [config.json] ###### ToDo
+For this project, the Lab provided by Udacity was used. The workspace configuration was the following [config.json](/starter_file/config.json).
 
 ## Dataset
 
@@ -173,7 +173,7 @@ The enpoint can now be consumed via the API:
 ![swagger](/starter_file/images/AutoML/swagger.png)
 
 My sample consumption of the endpoint was done via Jupyter Notebook as you can see below:
-
+![endpoint_request](/starter_file/images/AutoML/endpoint_request.JPG)
 
 As you can see, the sample data would result in a `DEATH_EVENT` of `1`.
 
@@ -189,5 +189,10 @@ In the end, the service and the compute cluster were deleted (manually because o
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
 
-## Standout Suggestions
+## Future Improvement Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+
+The accuracy of the best model (87.61 %) is not very good.
+The Deep Learning option can be tried when training the model which is not used by the AutoML in the runs.
+GPU instead of CPU could be used for faster training.
+Also, I can use feature selection techniques in the Jupyter Notebook for example [Boruta](https://towardsdatascience.com/simple-example-using-boruta-feature-selection-in-python-8b96925d5d7a).
